@@ -1,11 +1,20 @@
 <?php
+	/*
+		--- PHP In Memory ---
+		
+			Demo file
+	*/
 
-include('mem.php');
+	// PhpInMemory library instance
+	include('php_in_memory.php');
 
-echo $data->getData(); //affiche 0
+	// At object initialization
+	// Should print "PhpInMemory"
+	echo $data->getData() . '<br/>';
 
-echo '<br/>';
-$data->setData(2);	//met 2
-echo $data->getData(); //affiche 2
-
+	// Put datas
+	$data->setData("Hello World !");
+	
+	// Should print "Hello World !"
+	echo $data->getData() . '<br/>';
 ?>
