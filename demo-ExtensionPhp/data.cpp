@@ -1,8 +1,14 @@
-#include "data.h"
 #include <iostream>
+#include "data.h"
+using namespace PhpInMemory;
+
+Data::Data():m_value("PhpInMemory") {
+}
  
-Data::Data():m_value(0){}
+string Data::getData() {
+	return m_data;
+}
  
-int Data::getData(){return m_value;}
- 
-void Data::setData(int value){m_value = value;}
+void Data::setData(string value) {
+	m_data = value;
+}
