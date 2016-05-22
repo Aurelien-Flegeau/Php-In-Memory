@@ -1,8 +1,9 @@
 #include "php_in_memory.h"
- 
 #include "data.h"
-
+using namespace PhpInMemory;
 #include <iostream>
+#include <string>
+using namespace std;
  
 zend_object_handlers data_object_handlers;
  
@@ -15,7 +16,7 @@ zend_class_entry *data_ce;
 
 void data_free_storage(void *object TSRMLS_DC)
 {
-    data_object *obj = (data_object *)object;
+    data_object *obj = (data_object *) object;
     delete obj->data; 
  
     zend_hash_destroy(obj->std.properties);
@@ -29,7 +30,7 @@ zend_object_value data_create_handler(zend_class_entry *type TSRMLS_DC)
     zval *tmp;
     zend_object_value retval;
  
-    data_object *obj = (data_object *)emalloc(sizeof(data_object));
+    data_object *obj = (data_object *) emalloc(sizeof(data_object));
     memset(obj, 0, sizeof(data_object));
     obj->std.ce = type;
  
@@ -37,8 +38,8 @@ zend_object_value data_create_handler(zend_class_entry *type TSRMLS_DC)
     zend_hash_init(obj->std.properties, 0, NULL, ZVAL_PTR_DTOR, 0);
     object_properties_init(&obj->std, type);
  
-    retval.handle = zend_objects_store_put(obj, NULL,
-        data_free_storage, NULL TSRMLS_CC);
+    retval.handle = zend_objects_store_put(obj, NULL, data_free_storage, NULL TSRMLS_CC);
+		
     retval.handlers = &data_object_handlers;
  
     return retval;
@@ -50,25 +51,27 @@ PHP_METHOD(Data, __construct)
     zval *object = getThis();
  
     data = new Data();
-    data_object *obj = (data_object *)zend_object_store_get_object(object TSRMLS_CC);
+    data_object *obj = (data_object *) zend_object_store_get_object(object TSRMLS_CC);
     obj->data = data;
 }
 
 PHP_METHOD(Data, getData)
 {
     Data *data;
-    data_object *obj = (data_object *)zend_object_store_get_object(
-        getThis() TSRMLS_CC);
+    data_object *obj = (data_object *) zend_object_store_get_object(getThis() TSRMLS_CC);
+		
     data = obj->data;
+	
     if (data != NULL) {
         RETURN_LONG(data->getData());
     }
+	
     RETURN_NULL();
 }
 
 PHP_METHOD(Data, setData)
 {
-    int value;
+    string value;
     Data *data;
     zval *object = getThis();
  
@@ -76,9 +79,10 @@ PHP_METHOD(Data, setData)
         RETURN_NULL();
     }
 
-    data_object *obj = (data_object *)zend_object_store_get_object(
-        getThis() TSRMLS_CC);
+    data_object *obj = (data_object *) zend_object_store_get_object(getThis() TSRMLS_CC);
+		
     data = obj->data;
+	
     if (data != NULL) {
         data->setData(value);
     }
@@ -96,11 +100,14 @@ PHP_MINIT_FUNCTION(in_memory)
 {
     zend_class_entry ce;
     INIT_CLASS_ENTRY(ce, "Data", data_methods);
+	
     data_ce = zend_register_internal_class(&ce TSRMLS_CC);
     data_ce->create_object = data_create_handler;
-    memcpy(&data_object_handlers,
-        zend_get_std_object_handlers(), sizeof(zend_object_handlers));
+	
+    memcpy(&data_object_handlers, zend_get_std_object_handlers(), sizeof(zend_object_handlers));
+	
     data_object_handlers.clone_obj = NULL;
+	
     return SUCCESS;
 }
  
