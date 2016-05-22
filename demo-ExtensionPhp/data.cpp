@@ -5,10 +5,10 @@ using namespace PhpInMemory;
 Data::Data():m_value("PhpInMemory") {
 }
  
-string Data::getData() {
+string Data::get() {
 	return m_data;
 }
  
-void Data::setData(string value) {
+void Data::set(string value) {
 	m_data = value;
 }

@@ -12,8 +12,8 @@ namespace PhpInMemory {
 	public:
 		Data();
 		
-		int getData();
-		void setData(string);
+		int get();
+		void set(string);
 	};
 }
  

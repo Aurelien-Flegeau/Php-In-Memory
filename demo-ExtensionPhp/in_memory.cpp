@@ -55,7 +55,7 @@ PHP_METHOD(Data, __construct)
     obj->data = data;
 }
 
-PHP_METHOD(Data, getData)
+PHP_METHOD(Data, get)
 {
     Data *data;
     data_object *obj = (data_object *) zend_object_store_get_object(getThis() TSRMLS_CC);
@@ -63,13 +63,13 @@ PHP_METHOD(Data, getData)
     data = obj->data;
 	
     if (data != NULL) {
-        RETURN_LONG(data->getData());
+        RETURN_LONG(data->get());
     }
 	
     RETURN_NULL();
 }
 
-PHP_METHOD(Data, setData)
+PHP_METHOD(Data, set)
 {
     string value;
     Data *data;
@@ -84,15 +84,15 @@ PHP_METHOD(Data, setData)
     data = obj->data;
 	
     if (data != NULL) {
-        data->setData(value);
+        data->set(value);
     }
 }
 
  
 zend_function_entry data_methods[] = {
     PHP_ME(Data,  __construct,     NULL, ZEND_ACC_PUBLIC | ZEND_ACC_CTOR)
-    PHP_ME(Data,  getData,           NULL, ZEND_ACC_PUBLIC)
-    PHP_ME(Data,  setData,           NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(Data,  get,           NULL, ZEND_ACC_PUBLIC)
+    PHP_ME(Data,  set,           NULL, ZEND_ACC_PUBLIC)
     {NULL, NULL, NULL}
 };
  
