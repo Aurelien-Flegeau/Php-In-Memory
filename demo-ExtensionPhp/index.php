@@ -1,4 +1,4 @@
-<//?php
+<?php
 	/*
 		--- PHP In Memory ---
 		
@@ -6,7 +6,7 @@
 	*/
 
 	// PhpInMemory library instance
-	require_once 'php_in_memory.php';
+	include 'php_in_memory.php';
 
 	// At object initialization
 	// Should print "PhpInMemory"

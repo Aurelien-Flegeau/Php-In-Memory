@@ -1,7 +1,7 @@
 <?php
 	static $data;
 
-	if (!isset($obj)) {
+	if (!isset($data)) {
 		$data = new Data();
 	}
 ?>
