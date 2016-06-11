@@ -1,9 +1,6 @@
 #include "php_in_memory.h"
 #include "data.h"
 using namespace PhpInMemory;
-#include <iostream>
-#include <string>
-using namespace std;
  
 zend_object_handlers data_object_handlers;
  
