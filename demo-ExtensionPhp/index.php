@@ -1,4 +1,4 @@
-<?php
+<//?php
 	/*
 		--- PHP In Memory ---
 		
@@ -10,11 +10,12 @@
 
 	// At object initialization
 	// Should print "PhpInMemory"
-	echo $data->get() . '<br/>';
+	echo $data->get() . '<br />';
 
 	// Put datas
 	$data->set("Hello World !");
-	
+
 	// Should print "Hello World !"
-	echo $data->get() . '<br/>';
+	echo $data->get() . '<br />';
 ?>
+

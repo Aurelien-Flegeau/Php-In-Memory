@@ -63,7 +63,7 @@ PHP_METHOD(Data, get)
     data = obj->data;
 	
     if (data != NULL) {
-        RETURN_LONG(data->get());
+        RETURN_STRING(data->get(), 1);
     }
 	
     RETURN_NULL();
@@ -71,11 +71,13 @@ PHP_METHOD(Data, get)
 
 PHP_METHOD(Data, set)
 {
-    string value;
+    //string value;
+    char* value;
+    int length;
     Data *data;
     zval *object = getThis();
  
-    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "l", &value) == FAILURE) {
+    if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &value, &length) == FAILURE) {
         RETURN_NULL();
     }
 

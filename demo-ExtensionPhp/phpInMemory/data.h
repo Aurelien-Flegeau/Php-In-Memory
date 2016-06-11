@@ -7,13 +7,13 @@ using namespace std;
 namespace PhpInMemory {
 	class Data {
 		
-		string m_value;
+		char* m_data;
 		
 	public:
 		Data();
 		
-		int get();
-		void set(string);
+		char* get();
+		void set(char*);
 	};
 }
  

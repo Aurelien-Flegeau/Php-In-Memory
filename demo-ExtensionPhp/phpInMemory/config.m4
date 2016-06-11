@@ -8,3 +8,4 @@ if test $PHP_IN_MEMORY != "no"; then
     PHP_ADD_LIBRARY(stdc++, 1, IN_MEMORY_SHARED_LIBADD)
     PHP_NEW_EXTENSION(in_memory, in_memory.cpp data.cpp, $ext_shared)
 fi
+
