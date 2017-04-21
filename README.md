@@ -7,7 +7,7 @@ Include library instance :
 include 'php_in_memory.php';
 ```
 
-##Usage
+## Usage
 
 Put string data in memory :
 ```
